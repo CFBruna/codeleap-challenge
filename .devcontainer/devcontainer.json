@@ -22,12 +22,13 @@
 					"editor.defaultFormatter": "charliermarsh.ruff",
 					"editor.formatOnSave": true,
 					"editor.codeActionsOnSave": {
+						"source.fixAll": "explicit",
 						"source.organizeImports": "explicit"
 					}
 				}
 			}
 		}
 	},
-	"postCreateCommand": "git config --global --add safe.directory /workspace && pre-commit install && pre-commit install --hook-type pre-push",
+	"postCreateCommand": "git config --global --add safe.directory /workspace && pre-commit install && pre-commit install --hook-type pre-push && echo 'source /usr/lib/git-core/git-sh-prompt; export PS1=\"\\[\\033[32m\\]\\u@\\h\\[\\033[00m\\]:\\[\\033[34m\\]\\w\\[\\033[33m\\]\\$(__git_ps1)\\[\\033[00m\\]\\$ \"' >> ~/.bashrc",
 	"remoteUser": "app"
 }

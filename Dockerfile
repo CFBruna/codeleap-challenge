@@ -34,4 +34,4 @@ COPY --chown=app:app . .
 
 USER app
 
-CMD ["gunicorn", "--bind", "0.0.0.0:8000", "src.project.wsgi:application"]
+CMD ["gunicorn", "--bind", "0.0.0.0:8000", "--chdir", "src", "project.wsgi:application"]

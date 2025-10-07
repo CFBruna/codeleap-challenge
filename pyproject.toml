@@ -1,0 +1,69 @@
+[tool.ruff]
+line-length = 88
+indent-width = 4
+exclude = [
+    ".bzr",
+    ".direnv",
+    ".eggs",
+    ".git",
+    ".git-rewrite",
+    ".hg",
+    ".mypy_cache",
+    ".nox",
+    ".pants.d",
+    ".pytype",
+    ".ruff_cache",
+    ".svn",
+    ".tox",
+    ".venv",
+    "__pypackages__",
+    "_build",
+    "buck-out",
+    "build",
+    "dist",
+    "node_modules",
+    "venv",
+    "migrations",
+]
+
+[tool.ruff.lint]
+select = ["E", "W", "F", "I", "B", "UP"]
+ignore = ["E501"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+
+[tool.mypy]
+python_version = "3.12"
+strict = false  # strict=false para começar, depois mude para true
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = false
+plugins = ["mypy_django_plugin.main"]
+exclude = ["migrations", "tests"]
+
+[tool.django-stubs]
+django_settings_module = "src.project.settings"
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "src.project.settings"
+python_files = "tests.py test_*.py *_tests.py"
+pythonpath = ["src"]
+addopts = "--tb=short --cov --cov-report=term-missing"
+
+[tool.coverage.run]
+omit = [
+    "*/migrations/*",
+    "*/tests/*",
+    "src/manage.py",
+    "src/project/*",
+    "src/conftest.py",
+    "*/__init__.py",
+    "*/apps.py",
+]
+
+[tool.bandit]
+skips = ["B101", "B106", "B311"]
+exclude_dirs = ["tests", "migrations"]

@@ -1,0 +1,11 @@
+django
+psycopg2-binary
+python-decouple
+dj-database-url
+Pillow
+djangorestframework
+djangorestframework-simplejwt
+requests
+drf-spectacular
+whitenoise[brotli]
+gunicorn

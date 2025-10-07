@@ -28,4 +28,10 @@ USER app
 RUN pip install --user --upgrade pip && \
     pip install --user --no-cache-dir -r requirements-dev.txt
 
+USER root
+
+COPY --chown=app:app . .
+
+USER app
+
 CMD ["gunicorn", "--bind", "0.0.0.0:8000", "src.project.wsgi:application"]

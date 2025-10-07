@@ -1,4 +1,5 @@
 from rest_framework import mixins, viewsets
+from rest_framework.permissions import AllowAny
 
 from .models import Post
 from .serializers import PostSerializer, PostUpdateSerializer
@@ -18,6 +19,7 @@ class PostViewSet(
 
     queryset = Post.objects.all()
     serializer_class = PostSerializer
+    permission_classes = [AllowAny]
 
     def get_serializer_class(self):
         """

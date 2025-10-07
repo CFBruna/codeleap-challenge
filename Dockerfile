@@ -28,4 +28,6 @@ USER app
 RUN pip install --user --upgrade pip && \
     pip install --user --no-cache-dir -r requirements-dev.txt
 
-CMD ["gunicorn", "--bind", "0.0.0.0:8000", "--chdir", "src", "project.wsgi:application"]
+WORKDIR /workspace/src
+
+CMD ["gunicorn", "--bind", "0.0.0.0:8000", "project.wsgi:application"]

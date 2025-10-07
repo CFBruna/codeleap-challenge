@@ -4,7 +4,6 @@ RUN addgroup --system app && \
     adduser --system --ingroup app --shell /bin/bash --home /home/app app
 
 ENV PATH="/home/app/.local/bin:${PATH}" \
-    PYTHONPATH=/workspace \
     PYTHONUNBUFFERED=1 \
     PYTHONDONTWRITEBYTECODE=1
 
@@ -28,10 +27,6 @@ USER app
 RUN pip install --user --upgrade pip && \
     pip install --user --no-cache-dir -r requirements-dev.txt
 
-USER root
-
 COPY --chown=app:app . .
 
-USER app
-
-CMD ["gunicorn", "--bind", "0.0.0.0:8000", "--chdir", "src", "project.wsgi:application"]
+CMD ["gunicorn", "--bind", "0.0.0.0:8000", "src.project.wsgi:application"]

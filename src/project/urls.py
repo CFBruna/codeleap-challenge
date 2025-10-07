@@ -1,12 +1,18 @@
 from django.contrib import admin
-from django.urls import path
+from django.urls import include, path
 from drf_spectacular.views import (
     SpectacularAPIView,
     SpectacularRedocView,
     SpectacularSwaggerView,
 )
+from rest_framework.routers import DefaultRouter
 
 from src.apps.core.views import HealthCheckView
+from src.apps.posts.views import PostViewSet
+
+router = DefaultRouter()
+router.register(r"careers", PostViewSet, basename="post")
+
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -22,4 +28,5 @@ urlpatterns = [
         SpectacularRedocView.as_view(url_name="schema"),
         name="redoc",
     ),
+    path("", include(router.urls)),
 ]

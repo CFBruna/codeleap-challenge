@@ -15,7 +15,6 @@ ENV PATH="/home/app/.local/bin:${PATH}" \
     PYTHONDONTWRITEBYTECODE=1
 
 WORKDIR /workspace
-
 COPY --chown=app:app requirements.txt .
 
 USER app
@@ -35,9 +34,10 @@ ENV PATH="/home/app/.local/bin:${PATH}" \
 WORKDIR /workspace
 
 COPY --chown=app:app --from=builder /home/app/.local /home/app/.local
-
 COPY --chown=app:app . .
 
 USER app
 
-CMD ["sh", "-c", "python manage.py collectstatic --noinput && python manage.py migrate --noinput && gunicorn --bind 0.0.0.0:${PORT:-8000} --workers 2 --threads 4 --timeout 120 --access-logfile - --error-logfile - src.project.wsgi:application"]
+RUN python manage.py collectstatic --noinput
+
+CMD ["sh", "-c", "python manage.py migrate --noinput && gunicorn --bind 0.0.0.0:${PORT:-8000} --workers 2 src.project.wsgi:application"]

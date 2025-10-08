@@ -15,6 +15,8 @@ ENV PATH="/home/app/.local/bin:${PATH}" \
     PYTHONDONTWRITEBYTECODE=1
 
 WORKDIR /workspace
+RUN chown app:app /workspace
+
 COPY --chown=app:app requirements.txt .
 
 USER app
@@ -32,6 +34,7 @@ ENV PATH="/home/app/.local/bin:${PATH}" \
     PYTHONDONTWRITEBYTECODE=1
 
 WORKDIR /workspace
+RUN chown app:app /workspace
 
 COPY --chown=app:app --from=builder /home/app/.local /home/app/.local
 COPY --chown=app:app . .

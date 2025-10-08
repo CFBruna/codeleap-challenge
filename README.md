@@ -39,6 +39,7 @@ This project is configured to run easily with Docker and VS Code Dev Containers.
     git clone [https://github.com/CFBruna/codeleap-challenge.git](https://github.com/CFBruna/codeleap-challenge.git)
     cd codeleap-challenge
     ```
+
 2.  **Create the environment file:**
     ```bash
     cp .env.example .env

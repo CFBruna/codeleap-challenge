@@ -2,51 +2,54 @@
 
 [![Django CI](https://github.com/CFBruna/codeleap-challenge/actions/workflows/ci.yml/badge.svg)](https://github.com/CFBruna/codeleap-challenge/actions/workflows/ci.yml)
 
-Solução para o desafio técnico de Backend Engineer da CodeLeap, construída com Django, DRF e Docker, e deployada na plataforma Render.
+A solution for the CodeLeap Backend Engineer technical challenge, built with Django, DRF, and Docker, and deployed on the Render platform.
 
-## Links da Aplicação (Live Demo)
+## Application Links (Live Demo)
 
-* **API Base URL:** `https://codeleap-challenge-api-mqvl.onrender.com/`
+* **API Base URL:** `https://codeleap-challenge-api-mqvl.onrender.com/careers/`
 * **Health Check:** `https://codeleap-challenge-api-mqvl.onrender.com/api/v1/status/`
-* **Documentação (Swagger UI):** `https://codeleap-challenge-api-mqvl.onrender.com/api/v1/schema/swagger-ui/`
-* **Documentação (ReDoc):** `https://codeleap-challenge-api-mqvl.onrender.com/api/v1/schema/redoc/`
+* **Documentation (Swagger UI):** `https://codeleap-challenge-api-mqvl.onrender.com/api/v1/schema/swagger-ui/`
+* **Documentation (ReDoc):** `https://codeleap-challenge-api-mqvl.onrender.com/api/v1/schema/redoc/`
+
+*Note: The main API endpoint (`/careers/`) will return an "authentication credentials were not provided" message. This is the expected behavior, as the API is secure by default, configured with `IsAuthenticated` in the Django REST Framework.*
 
 ## Tech Stack
 
 * **Backend:** Python, Django, Django REST Framework
-* **Banco de Dados:** PostgreSQL
+* **Database:** PostgreSQL
 * **DevOps:** Docker, GitHub Actions (CI/CD), Render (PaaS)
-* **Qualidade de Código:** Pytest, Ruff, Mypy, Pre-commit
+* **Code Quality:** Pytest, Ruff, Mypy, Pre-commit
 * **API:** OpenAPI (via drf-spectacular)
 
-## Decisões de Arquitetura e Boas Práticas Implementadas
+## Architectural Decisions and Best Practices
 
-Além dos requisitos básicos do CRUD, o projeto foi desenvolvido seguindo padrões de mercado para garantir qualidade, segurança e manutenibilidade:
+Beyond the basic CRUD requirements, this project was developed using industry-standard patterns to ensure quality, security, and maintainability:
 
-* **Containerização Completa:** A aplicação é totalmente containerizada com Docker, garantindo um ambiente consistente do desenvolvimento à produção.
-* **Integração Contínua (CI):** Um pipeline no GitHub Actions é executado a cada push, rodando testes automatizados, linting, checagem de tipos e análise de segurança para garantir a integridade do código.
-* **Testes Automatizados:** Cobertura de testes para os endpoints da API utilizando `pytest` para assegurar o funcionamento correto das funcionalidades.
-* **Documentação Automática da API:** Utilização do `drf-spectacular` para gerar um schema OpenAPI, com interfaces Swagger UI e ReDoc disponíveis para fácil exploração e consumo da API.
-* **Segurança:** A imagem Docker utiliza um usuário não-root, seguindo as melhores práticas de segurança para ambientes containerizados.
-* **Gerenciamento de Dependências:** Uso de `pip-tools` para um gerenciamento de dependências preciso e reprodutível.
+* **Full Containerization:** The application is fully containerized with Docker, ensuring a consistent environment from development to production.
+* **Continuous Integration (CI):** A GitHub Actions pipeline runs on every push, executing automated tests, linting, type-checking, and security scans to ensure code integrity.
+* **Automated Testing:** API endpoints are covered by a test suite using `pytest` to guarantee correct functionality.
+* **Automatic API Documentation:** The project uses `drf-spectacular` to generate an OpenAPI schema, with Swagger UI and ReDoc interfaces available for easy API exploration and consumption.
+* **Security:** The Docker image uses a non-root user, following security best practices for containerized environments.
+* **Dependency Management:** The project uses `pip-tools` for precise and reproducible dependency management.
 
-## Como Executar Localmente
+## How to Run Locally
 
-O projeto é configurado para rodar facilmente com Docker e VS Code Dev Containers.
+This project is configured to run easily with Docker and VS Code Dev Containers.
 
-1.  **Clone o repositório:**
+1.  **Clone the repository:**
     ```bash
     git clone [https://github.com/CFBruna/codeleap-challenge.git](https://github.com/CFBruna/codeleap-challenge.git)
     cd codeleap-challenge
     ```
-2.  **Crie o arquivo de ambiente:**
+
+2.  **Create the environment file:**
     ```bash
     cp .env.example .env
     ```
-    *(É necessário preencher as variáveis no arquivo `.env` para rodar localmente)*
+    *(You must fill in the variables in the `.env` file to run the project locally)*
 
-3.  **Suba os containers:**
+3.  **Build and run the containers:**
     ```bash
     docker-compose up --build
     ```
-A aplicação estará disponível em `http://127.0.0.1:8000`.
+The application will be available at `http://127.0.0.1:8000`.

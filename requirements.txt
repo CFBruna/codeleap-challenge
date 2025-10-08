@@ -5,7 +5,9 @@
 #    pip-compile --output-file=requirements.txt requirements.in
 #
 asgiref==3.10.0
-    # via django
+    # via
+    #   django
+    #   django-cors-headers
 attrs==25.4.0
     # via
     #   jsonschema
@@ -22,9 +24,12 @@ django==5.2.7
     # via
     #   -r requirements.in
     #   dj-database-url
+    #   django-cors-headers
     #   djangorestframework
     #   djangorestframework-simplejwt
     #   drf-spectacular
+django-cors-headers==4.9.0
+    # via -r requirements.in
 djangorestframework==3.16.1
     # via
     #   -r requirements.in

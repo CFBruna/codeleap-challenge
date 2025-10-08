@@ -38,6 +38,6 @@ COPY --chown=app:app . .
 
 USER app
 
-RUN python manage.py collectstatic --noinput
+RUN SECRET_KEY='django-insecure-dummy-key-for-build' DEBUG=False python manage.py collectstatic --noinput
 
 CMD ["sh", "-c", "python manage.py migrate --noinput && gunicorn --bind 0.0.0.0:${PORT:-8000} --workers 2 src.project.wsgi:application"]

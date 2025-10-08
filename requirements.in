@@ -9,3 +9,4 @@ requests
 drf-spectacular
 whitenoise[brotli]
 gunicorn
+django-cors-headers

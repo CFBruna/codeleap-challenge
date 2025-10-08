@@ -11,8 +11,6 @@ A solution for the CodeLeap Backend Engineer technical challenge, built with Dja
 * **Documentation (Swagger UI):** `https://codeleap-challenge-api-mqvl.onrender.com/api/v1/schema/swagger-ui/`
 * **Documentation (ReDoc):** `https://codeleap-challenge-api-mqvl.onrender.com/api/v1/schema/redoc/`
 
-*Note: The main API endpoint (`/careers/`) will return an "authentication credentials were not provided" message. This is the expected behavior, as the API is secure by default, configured with `IsAuthenticated` in the Django REST Framework.*
-
 ## Tech Stack
 
 * **Backend:** Python, Django, Django REST Framework

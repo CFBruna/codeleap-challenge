@@ -15,7 +15,11 @@ ENV PATH="/home/app/.local/bin:${PATH}" \
     PYTHONDONTWRITEBYTECODE=1
 
 WORKDIR /workspace
-COPY requirements.txt .
+
+COPY --chown=app:app requirements.txt .
+
+USER app
+
 RUN pip install --user --upgrade pip && \
     pip install --user --no-cache-dir -r requirements.txt
 
@@ -30,11 +34,9 @@ ENV PATH="/home/app/.local/bin:${PATH}" \
 
 WORKDIR /workspace
 
-COPY --from=builder /home/app/.local /home/app/.local
+COPY --chown=app:app --from=builder /home/app/.local /home/app/.local
 
-COPY . .
-
-RUN chown -R app:app /workspace
+COPY --chown=app:app . .
 
 USER app
 

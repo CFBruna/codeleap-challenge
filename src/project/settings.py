@@ -12,6 +12,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 SECRET_KEY = config("SECRET_KEY")
 DEBUG = config("DEBUG", default=False, cast=bool)
 
+TESTING = config("TESTING", default=False, cast=bool)
+
 ALLOWED_HOSTS = config(
     "ALLOWED_HOSTS",
     default="127.0.0.1,localhost,*.onrender.com",
@@ -19,7 +21,7 @@ ALLOWED_HOSTS = config(
 )
 
 
-if not DEBUG:
+if not DEBUG and not TESTING:
     RENDER_DOMAIN = config("RENDER_EXTERNAL_HOSTNAME", default="")
     if RENDER_DOMAIN:
         ALLOWED_HOSTS.append(RENDER_DOMAIN)

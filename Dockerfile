@@ -1,44 +1,30 @@
-FROM python:3.12-slim as builder
-
-RUN addgroup --system app && \
-    adduser --system --ingroup app --shell /bin/bash --home /home/app app
+FROM python:3.12-slim
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    libpq5 \
     postgresql-client \
-    procps \
+    git \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-ENV PATH="/home/app/.local/bin:${PATH}" \
-    PYTHONUNBUFFERED=1 \
-    PYTHONDONTWRITEBYTECODE=1
-
-WORKDIR /workspace
-RUN chown app:app /workspace
-
-COPY --chown=app:app requirements.txt .
-
-USER app
-
-RUN pip install --user --upgrade pip && \
-    pip install --user --no-cache-dir -r requirements.txt
-
-FROM python:3.12-slim as final
-
 RUN addgroup --system app && \
     adduser --system --ingroup app --shell /bin/bash --home /home/app app
 
 ENV PATH="/home/app/.local/bin:${PATH}" \
     PYTHONUNBUFFERED=1 \
-    PYTHONDONTWRITEBYTECODE=1
+    PYTHONTWRITEBYTECODE=1
 
 WORKDIR /workspace
-RUN chown app:app /workspace
 
-COPY --chown=app:app --from=builder /home/app/.local /home/app/.local
+COPY --chown=app:app requirements.txt requirements-dev.txt ./
+
+USER app
+RUN pip install --user --upgrade pip && \
+    pip install --user --no-cache-dir -r requirements-dev.txt
+
+USER root
 COPY --chown=app:app . .
 
+RUN chown -R app:app /workspace
 USER app
 
 RUN SECRET_KEY='django-insecure-dummy-key-for-build' DEBUG=False python manage.py collectstatic --noinput

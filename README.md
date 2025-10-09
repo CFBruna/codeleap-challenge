@@ -6,10 +6,10 @@ A solution for the CodeLeap Backend Engineer technical challenge, built with Dja
 
 ## Application Links (Live Demo)
 
-* **API Base URL:** `https://codeleap-challenge-api-mqvl.onrender.com/careers/`
-* **Health Check:** `https://codeleap-challenge-api-mqvl.onrender.com/api/v1/status/`
-* **Documentation (Swagger UI):** `https://codeleap-challenge-api-mqvl.onrender.com/api/v1/schema/swagger-ui/`
-* **Documentation (ReDoc):** `https://codeleap-challenge-api-mqvl.onrender.com/api/v1/schema/redoc/`
+* **API Base URL:** [`https://codeleap-challenge-api-mqvl.onrender.com/careers/`](https://codeleap-challenge-api-mqvl.onrender.com/careers/)
+* **Health Check:** [`https://codeleap-challenge-api-mqvl.onrender.com/api/v1/status/`](https://codeleap-challenge-api-mqvl.onrender.com/api/v1/status/)
+* **Documentation (Swagger UI):** [`https://codeleap-challenge-api-mqvl.onrender.com/api/v1/schema/swagger-ui/`](https://codeleap-challenge-api-mqvl.onrender.com/api/v1/schema/swagger-ui/)
+* **Documentation (ReDoc):** [`https://codeleap-challenge-api-mqvl.onrender.com/api/v1/schema/redoc/`](https://codeleap-challenge-api-mqvl.onrender.com/api/v1/schema/redoc/)
 
 ## Tech Stack
 
